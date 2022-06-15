@@ -9,7 +9,7 @@ db.restaurants.find({"grades.score": {$gte: 90}});
 db.restaurants.find({grades: { $elemMatch: {score: {$gte: 80, $lt: 100}}}});
 db.restaurants.find({"address.coord.0": {$lt: -95.754168}});
 db.restaurants.find({$and: [{cuisine: {$ne: "American "}}, {"grades.score":{$gt: 70}}, {"address.coord.0":{$lt:-65.754168}}]});
-db.restaurants.find({cuisine: {$ne: "American "}, "grades.score":{$gt: 70}, "address.coord.1":{$lt:-65.754168}});
+db.restaurants.find({cuisine: {$ne: "American "}, "grades.score":{$gt: 70}, "address.coord.0":{$lt:-65.754168}});
 db.restaurants.find({cuisine: {$ne: "American "}, "grades.grade": "A", borough: {$ne: "Brooklyn"}});
 db.restaurants.find({name: {$regex: /^Wil/ }},{restaurant_id:1,name:1,borough:1,cuisine:1});
 db.restaurants.find({name: {$regex: /ces$/ }},{restaurant_id:1,name:1,borough:1,cuisine:1});
@@ -25,7 +25,7 @@ db.restaurants.find({"address.coord.1": {$gt: 42, $lte: 52}},{restaurant_id:1,na
 db.restaurants.find().sort({name: 1});
 db.restaurants.find().sort({name: -1});
 db.restaurants.find().sort({cuisine: 1, borough: -1});
-db.restaurants.find({$or: [{"address.street":{$exists:true}}, {"address.street":{$exists:false}}]},{address:1});
+db.restaurants.find({"address.street":{$exists:false}},{address:1});
 db.restaurants.find({"address.coord": {$type: "double"}});
 db.restaurants.find({"grades.score": {$mod: [7,0]}},{restaurant_id:1,name:1,"grades.grade":1});
 db.restaurants.find({name: {$regex: /mon/ }},{name:1,borough:1,"address.coord.0":1,"address.coord.1":1,cuisine:1});
